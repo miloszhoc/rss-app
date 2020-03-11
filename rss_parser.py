@@ -13,14 +13,14 @@ def get_urls(data):
 def parse_rss(url):
     data = dict()
     parser = feedparser.parse(url)
-    feed_title = parser['feed']['title']
 
-    data['feed_title'] = feed_title
+    data['feed_title'] = parser.feed.title
     data['content'] = []
 
-    [data['content'].append({'title': i['title'],
-                             'inside_content': {'text': i['summary'], 'link': i['links'][0]['href']}})
-     for i in parser['entries']]
+    for i in parser.entries:
+        if i.has_key('summary'):
+            data['content'].append(
+                {'title': i.title, 'inside_content': {'text': i.summary, 'link': i.links[0].href}})
     return data
 
 
@@ -37,4 +37,3 @@ def create_html(data: dict):
                 br()
                 br()
     return doc
-

@@ -14,9 +14,6 @@ def index():
     error = ''
     frame_content = ''
 
-    # show all urls
-    urls = requests.get('{}/urls'.format(URL_LOCAL)).json()
-
     if request.method == "POST":
         if 'url_form' in request.form:
             url = request.form['url']
@@ -28,7 +25,21 @@ def index():
 
         elif 'email_form' in request.form:
             email = request.form['email']
-            requests.post('{}/mail'.format(URL_LOCAL), data={'email': email})
+            rss = requests.get('{}/rss'.format(URL_LOCAL), data={'email': email})
+            response = rss.json()
+            if response['success']:
+                try:
+                    email = request.form['email']
+                    html = rss_parser.create_html(response['rss_content'])
+                    sendgrid_mail.send_email(email, str(html))
+                except Exception as e:
+                    print(e)
+                    error = e
+            if not response['success']:
+                error = response['error']
+
+    # show all urls
+    urls = requests.get('{}/urls'.format(URL_LOCAL)).json()
 
     return render_template('index.html', data={'urls': urls,
                                                'error': error,
@@ -117,18 +128,27 @@ def update_url(id):
                 'error': error}
 
 
-@app.route('/mail', methods=['POST'])
-def mail():
-    d = {}
-    email = request.form['email']
-    schema = models.UrlSchema(many=True)
-    urls = models.Url.query.order_by(models.Url.id.asc())
-    data = schema.dump(urls)
-    for content in rss_parser.get_urls(data):
-        d[content] = rss_parser.parse_rss(content)
-    html = rss_parser.create_html(d)
-    sendgrid_mail.send_email(email, str(html))
-    return d
+@app.route('/rss', methods=['GET'])
+def rss():
+    error = ''
+    rss_content = {}
+    success = False
+    try:
+        schema = models.UrlSchema(many=True)
+        urls = models.Url.query.order_by(models.Url.id.asc())
+        data = schema.dump(urls)
+
+        for content in rss_parser.get_urls(data):
+            rss_content[content] = rss_parser.parse_rss(content)
+
+        success = True
+    except Exception as e:
+        print(str(e))
+        error = str(e)
+
+    return {'success': success,
+            'rss_content': rss_content,
+            'error': error}
 
 
 if __name__ == '__main__':

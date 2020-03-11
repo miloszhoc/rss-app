@@ -9,16 +9,16 @@ app = Flask(__name__)
 cors = CORS(app)
 
 # email data
-SENDGRID_KEY = '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'
-FROM_EMAIL = 'mhoc_rss@cloud_app.com'
+SENDGRID_KEY = os.environ.get('SENDGRID_API_KEY')
+FROM_EMAIL = os.environ.get('FROM_EMAIL')
 
-# local database access
-DB_HOST = 'localhost'
-DB_USER = 'postgres'
-DB_PASS = 'licencjat123!'
-DB_NAME = 'cloud_app_db'
-DB_TABLE = 'url'
-DB_PORT = '5432'
+# database access
+DB_HOST = os.environ.get('DB_HOST')
+DB_USER = os.environ.get('DB_USER')
+DB_PASS = os.environ.get('DB_PASS')
+DB_NAME = os.environ.get('DB_NAME')
+DB_TABLE = os.environ.get('DB_TABLE')
+DB_PORT = os.environ.get('DB_PORT')
 
 DB_URL = 'postgresql+psycopg2://{user}:{passwd}@{url}:{port}/{db}'.format(user=DB_USER,
                                                                           passwd=DB_PASS,

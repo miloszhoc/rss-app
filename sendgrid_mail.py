@@ -9,12 +9,10 @@ def send_email(email: str, content: str):
         to_emails=email,
         subject='RSS',
         html_content=content)
-    try:
-        sg = SendGridAPIClient(SENDGRID_KEY)
-        response = sg.send(message)
-        # print(response.status_code)
-        # print(response.body)
-        # print(response.headers)
-        # print(message.content)
-    except Exception as e:
-        print(e.message)
+    sg = SendGridAPIClient(SENDGRID_KEY)
+    response = sg.send(message)
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+    print(message.content)
+    return response.status_code
