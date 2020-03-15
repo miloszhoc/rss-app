@@ -12,7 +12,7 @@ import sendgrid_mail
 def index():
     URL_LOCAL = request.url
     error = ''
-    frame_content = ''
+    debug_content = {'': ''}
 
     if request.method == "POST":
         if 'url_form' in request.form:
@@ -31,7 +31,7 @@ def index():
                 try:
                     email = request.form['email']
                     html = rss_parser.create_html(response['rss_content'])
-                    sendgrid_mail.send_email(email, str(html))
+                    debug_content = sendgrid_mail.send_email(email, str(html))
                 except Exception as e:
                     print(e)
                     error = e
@@ -44,7 +44,7 @@ def index():
     return render_template('index.html', data={'urls': urls,
                                                'error': error,
                                                'url': URL_LOCAL,
-                                               'frame_content': frame_content})
+                                               'debug_content': debug_content})
 
 
 # get method

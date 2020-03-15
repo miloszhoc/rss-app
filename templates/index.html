@@ -19,7 +19,7 @@
     </form>
     <br><br><br><br>
 
-    <form action="." method="post" id="email_form" onsubmit="set_storage('{{ data.frame_content }}')">
+    <form action="." method="post" id="email_form">
         <input type="hidden" name="email_form">
         <label>EMAIL
             <input type="email" name="email">
@@ -27,8 +27,12 @@
         <input type="submit" value="Send">
     </form>
     <br><br><br>
-    DEBUG:<br>
-    <iframe src="mail.html"></iframe>
+    <div id="debug">
+        DEBUG:<br>
+        {% for k, v in data.debug_content.items() %}
+        {{ k }} - {{ v }}<br>
+        {% endfor %}
+    </div>
 </center>
 <br><br><br>
 <div id="urls">

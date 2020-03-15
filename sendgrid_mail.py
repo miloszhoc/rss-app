@@ -4,6 +4,7 @@ from config import SENDGRID_KEY, FROM_EMAIL
 
 
 def send_email(email: str, content: str):
+    resp = {}
     message = Mail(
         from_email=FROM_EMAIL,
         to_emails=email,
@@ -11,8 +12,8 @@ def send_email(email: str, content: str):
         html_content=content)
     sg = SendGridAPIClient(SENDGRID_KEY)
     response = sg.send(message)
-    print(response.status_code)
-    print(response.body)
-    print(response.headers)
-    print(message.content)
-    return response.status_code
+    resp['status_code'] = response.status_code
+    resp['body'] = response.body
+    resp['header'] = response.headers
+    resp['content'] = message.content
+    return resp
