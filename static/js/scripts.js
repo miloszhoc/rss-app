@@ -1,7 +1,7 @@
 function delete_ajax(id, url) {
     $.ajax({
         type: "DELETE",
-        url: url + "/urls/" + id,
+        url: url + "urls/" + id,
         dataType: "text",
         contentType: "text/plain",
         success: function () {
@@ -12,7 +12,7 @@ function delete_ajax(id, url) {
 }
 
 function put_ajax(id, data, url) {
-    let full_url = url + '/urls/' + id;
+    let full_url = url + 'urls/' + id;
 
     console.log(full_url);
     return $.ajax({
