@@ -10,22 +10,25 @@ import sendgrid_mail
 # dodac walidacje na rss
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    # prevents ajax error
     URL_LOCAL = request.url
+    if URL_LOCAL.startswith('http://'):
+        URL_LOCAL = URL_LOCAL.replace('http://', 'https://', 1)
+
     error = ''
     debug_content = {'': ''}
-
     if request.method == "POST":
         if 'url_form' in request.form:
             url = request.form['url']
             # add new url to db
-            add_url = requests.post('{}/urls'.format(URL_LOCAL), data={'url': url})
+            add_url = requests.post('{}urls'.format(URL_LOCAL), data={'url': url})
             response = add_url.json()
             if not response['success']:
                 error = response['error']
 
         elif 'email_form' in request.form:
             email = request.form['email']
-            rss = requests.get('{}/rss'.format(URL_LOCAL), data={'email': email})
+            rss = requests.get('{}rss'.format(URL_LOCAL), data={'email': email})
             response = rss.json()
             if response['success']:
                 try:
@@ -39,7 +42,7 @@ def index():
                 error = response['error']
 
     # show all urls
-    urls = requests.get('{}/urls'.format(URL_LOCAL)).json()
+    urls = requests.get('{}urls'.format(URL_LOCAL)).json()
 
     return render_template('index.html', data={'urls': urls,
                                                'error': error,
