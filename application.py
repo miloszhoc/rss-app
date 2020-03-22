@@ -27,8 +27,7 @@ def index():
                 error = response['error']
 
         elif 'email_form' in request.form:
-            email = request.form['email']
-            rss = requests.get('{}rss'.format(URL_LOCAL), data={'email': email})
+            rss = requests.get('{}rss'.format(URL_LOCAL))
             response = rss.json()
             if response['success']:
                 try:
