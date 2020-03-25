@@ -77,7 +77,8 @@ def add_url():
         new_url = models.Url(url)
         db.session.add(new_url)
         db.session.commit()
-        data = url
+        db.session.refresh(new_url)
+        data = {'id': new_url.id, 'url': url}
         success = True
     except exc.IntegrityError:
         error = 'url already exists'
