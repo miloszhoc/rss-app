@@ -28,3 +28,6 @@ Dla poszczególnych metod wyniki prezentują się następująco:
 Najprawdopodobniej niekorzystny wynik raportu orpócz powolnego algorytmu do łączenia RSS-ów wynika z wolnej bazy,    
 która działa na prywatnym VPS o kiepskich parametrach. Niestety w chwili testów w nie było możliwości postawienia żadnej bazy w chmurze Microsoftu.
 
+Zostało również wysłane testowe 100 maili na adresy mailowe z zakresu: **aplkacja_rss1@yopmail.com - aplkacja_rss100@yopmail.com**     
+na darmową tymczasową pocztę http://www.yopmail.com/, maile powinny być dostępne do wglądu      
+po wpisaniu na stronie poczty adresu email z wyżej wymienionego zakresu **(ADRES MAILOWY ZAWIERA LITERÓWKĘ!!)**.
