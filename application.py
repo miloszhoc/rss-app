@@ -140,10 +140,8 @@ def rss():
         schema = models.UrlSchema(many=True)
         urls = models.Url.query.order_by(models.Url.id.asc())
         data = schema.dump(urls)
-
         for content in rss_parser.get_urls(data):
             rss_content[content] = rss_parser.parse_rss(content)
-
         success = True
     except Exception as e:
         print(str(e))
@@ -152,6 +150,11 @@ def rss():
     return {'success': success,
             'rss_content': rss_content,
             'error': error}
+
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db.session.remove()
 
 
 if __name__ == '__main__':
