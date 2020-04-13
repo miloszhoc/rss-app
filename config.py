@@ -29,8 +29,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = DB_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 SQLALCHEMY_ENGINE_OPTIONS = {
-    'pool_size': 50,
-    'max_overflow': 100}
+    'pool_size': 1000,
+    'max_overflow': 2000}
 
 db = SQLAlchemy(app, engine_options=SQLALCHEMY_ENGINE_OPTIONS)
 ma = Marshmallow(app)
