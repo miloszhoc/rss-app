@@ -1,19 +1,18 @@
-from flask import render_template
+from database import models
+from . import db
+from flask import render_template, jsonify, request
 import requests
-from config import app, db, jsonify, request
-import models
 from sqlalchemy import exc
 import rss_parser
 import sendgrid_mail
-
 
 # dodac walidacje na rss
 @app.route('/', methods=['GET', 'POST'])
 def index():
     # prevents ajax error
     URL_LOCAL = request.url
-    if URL_LOCAL.startswith('http://'):
-        URL_LOCAL = URL_LOCAL.replace('http://', 'https://', 1)
+    # if URL_LOCAL.startswith('http://'):
+    #     URL_LOCAL = URL_LOCAL.replace('http://', 'https://', 1)
 
     error = ''
     debug_content = {'': ''}
@@ -157,5 +156,5 @@ def shutdown_session(exception=None):
     db.session.remove()
 
 
-if __name__ == '__main__':
-    app.run()
+# if __name__ == '__main__':
+#     app.run()

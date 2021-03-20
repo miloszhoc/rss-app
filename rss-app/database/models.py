@@ -1,4 +1,5 @@
-from config import db, ma
+from . import db, ma
+from sqlalchemy.orm import validates
 
 
 class Url(db.Model):
@@ -8,8 +9,13 @@ class Url(db.Model):
     def __init__(self, url):
         self.url = url
 
+    @validates('url')
+    def validate_url(self, key, url):
+        assert 'http://' in url or 'https://' in url
+        return url
 
-class UrlSchema(ma.ModelSchema):
+
+class UrlSchema(ma.Schema):
     class Meta:
         model = Url
         session = db.session

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona główna</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type=text/javascript src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+</head>
+<body>
+<center>
+
+    <form action="" method="post" id="url_form">
+        <input type="hidden" name="url_form">
+        <label>URL
+            <input type="url" name="url" required/>
+        </label>
+        <input type="submit" value="Save"><br><br>
+
+        <div id="error_message">
+            {{ data.error }}
+        </div>
+    </form>
+    <br><br><br><br>
+
+    <form action="" method="post" id="email_form">
+        <input type="hidden" name="email_form">
+        <label>EMAIL
+            <input type="email" name="email" required>
+        </label>
+        <input type="submit" value="Send">
+    </form>
+    <br><br><br>
+    <div id="debug">
+        DEBUG:<br>
+        {% for k, v in data.debug_content.items() %}
+            {{ k }} - {{ v }}<br>
+        {% endfor %}
+    </div>
+</center>
+<br><br><br>
+<div id="urls">
+    <table>
+        {% for i in data.urls %}
+            <tr>
+                <td>{{ i.url }}
+                    <div id="{{ i.id }}_div" style="display: none">
+                        <form id="update_form_{{ i.id }}" action=""
+                              onsubmit='put_ajax("{{ i.id }}", document.getElementById("{{ i.id }}_text").value, "{{ data.url }}")'>
+                            <label for="{{ i.id }}_text"></label>
+                            <input type="url" id="{{ i.id }}_text" required>
+                            <input type="submit" value="Change">
+                        </form>
+                    </div>
+                </td>
+                <td>
+                    <button id="{{ i.id }}_u" onclick='show_hide("{{ i.id }}_div")'>Update</button>
+                </td>
+                <td>
+                    <button id="{{ i.id }}_d" onclick='delete_ajax("{{ i.id }}", "{{ data.url }}")'>Delete</button>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<script src="{{ url_for('static', filename='js/scripts.js' ) }}">
+
+</script>
+</body>
+</html>
