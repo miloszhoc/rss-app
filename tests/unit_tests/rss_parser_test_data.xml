@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <channel>
+        <title>Latest World Reviews</title>
+        <link>http://www.bbc.co.uk/music/genres/world/reviews</link>
+        <category>BBC Music</category>
+        <atom:link href="http://www.bbc.co.uk/music/genres/world/reviews.rss" rel="self" type="application/rss+xml"/>
+        <description>These are the latest World reviews on BBC Music</description>
+        <copyright>Copyright: (C) British Broadcasting Corporation</copyright>
+        <docs>http://www.bbc.co.uk/syndication/</docs>
+        <language>en-en</language>
+        <ttl>60</ttl>
+        <item>
+            <title>Fela Kuti - The Best of the Black President 2</title>
+            <description>Cherry-picked cuts from the catalogue of He Who Carries Death In His Pouch.</description>
+            <link>http://www.bbc.co.uk/music/reviews/26b6</link>
+            <guid>http://www.bbc.co.uk/music/reviews/26b6</guid>
+            <pubDate>Tue, 05 Mar 2013 00:00:00 +0000</pubDate>
+            <media:thumbnail width="86" height="86"
+                             url="http://www.bbc.co.uk/staticarchive/0232a1c3553438ec7205d9b61590a023e3f20bd2.jpg"/>
+        </item>
+        <item>
+            <title>Salif Keita - TalĂŠ</title>
+            <description>A loveable enough effort from the Malian star.</description>
+            <link>http://www.bbc.co.uk/music/reviews/vxwx</link>
+            <guid>http://www.bbc.co.uk/music/reviews/vxwx</guid>
+            <pubDate>Fri, 15 Feb 2013 00:00:00 +0000</pubDate>
+            <media:thumbnail width="86" height="86"
+                             url="http://www.bbc.co.uk/staticarchive/a24f29e34248402f3d6ef14edd8a45b758dcfab9.jpg"/>
+        </item>
+        <item>
+            <title>Bomba EstĂŠreo - Elegancia Tropical</title>
+            <description>BogotĂĄ quintet delivers fiery electro-Cumbia contortions with hidden depths.</description>
+            <link>http://www.bbc.co.uk/music/reviews/qwgw</link>
+            <guid>http://www.bbc.co.uk/music/reviews/qwgw</guid>
+            <pubDate>Mon, 11 Feb 2013 00:00:00 +0000</pubDate>
+            <media:thumbnail width="86" height="86"
+                             url="http://www.bbc.co.uk/staticarchive/8fa8f43c5a1f2365c0306b79ea3484057f42b4aa.jpg"/>
+        </item>
+    </channel>
+</rss>
