@@ -23,7 +23,7 @@ def index():
     debug_content = {'': ''}
     if request.method == "POST":
         if 'url_form' in request.form:
-            url = request.form['url']
+            url = request.form['url'].strip()
             # add new url to db
             add_url = requests.post('{}urls'.format(URL_LOCAL), data={'url': url})
             response = add_url.json()
@@ -33,16 +33,19 @@ def index():
         elif 'email_form' in request.form:
             rss = requests.get('{}rss'.format(URL_LOCAL))
             response = rss.json()
-            if response['success']:
-                try:
-                    email = request.form['email']
-                    html = rss_app.rss_parser.create_html(response['rss_content'])
-                    debug_content = rss_app.sendgrid_mail.send_email(email, str(html))
-                except Exception as e:
-                    print(e)
-                    error = e
-            if not response['success']:
-                error = response['error']
+            if not models.Url.query.all():
+                error = 'Please add at least one RSS address'
+            else:
+                if response['success']:
+                    try:
+                        email = request.form['email']
+                        html = rss_app.rss_parser.create_html(response['rss_content'])
+                        debug_content = rss_app.sendgrid_mail.send_email(email, str(html))
+                    except Exception as e:
+                        print(e)
+                        error = e
+                if not response['success']:
+                    error = response['error']
 
     # show all urls
     try:
@@ -128,7 +131,7 @@ def update_url(id):
     try:
         element = models.Url.query.get(id)
         url = element
-        url_from_form = request.form['url']
+        url_from_form = request.form['url'].strip()
         url.url = url_from_form
         db.session.commit()
         success = True
