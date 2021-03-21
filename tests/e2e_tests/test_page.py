@@ -34,3 +34,10 @@ def test_send_email(add_new_url, delete_url):
     page = MainPage(driver)
     page.send_email('example_mail@example.com')
     assert not page.get_error_message()
+
+
+def test_send_email_without_urls(get_driver):
+    driver = get_driver
+    page = MainPage(driver)
+    page.send_email('example_mail@example.com')
+    assert page.get_error_message() == 'Please add at least one RSS address'
