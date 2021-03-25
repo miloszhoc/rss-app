@@ -12,6 +12,7 @@ pipeline {
             steps {
                 sh 'bandit -r rss_app'
             }
+        }
         stage('check_health') {
             steps {
                 sh 'pytest tests/test__init__.py'
