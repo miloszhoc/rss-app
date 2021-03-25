@@ -8,22 +8,22 @@ pipeline {
         }
         stage('check_code') {
             steps {
-                sh 'bandit -r rss_app'
+                sh 'python3.8 -m bandit -r rss_app'
             }
         }
         stage('check_health') {
             steps {
-                sh 'pytest tests/test__init__.py'
+                sh 'python3.8 -m pytest tests/test__init__.py'
             }
         }
         stage('unit_tests') {
             steps {
-                sh 'pytest tests/unit_tests'
+                sh 'python3.8 -m pytest tests/unit_tests'
             }
         }
         stage('integration_tests') {
             steps {
-                sh 'pytest tests/integration_tests'
+                sh 'python3.8 -m pytest tests/integration_tests'
             }
         }
     }
