@@ -3,8 +3,6 @@ pipeline {
     stages {
         stage('setup_env') {
             steps {
-                sh 'python3.8 -m venv venv'
-                sh 'source venv/bin/activate'
                 sh 'python3.8 -m pip install -r requirements.txt'
             }
         }
