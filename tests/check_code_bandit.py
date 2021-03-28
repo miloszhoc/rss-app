@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 
 cmd_output = sys.stdin.read()
