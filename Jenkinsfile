@@ -8,7 +8,8 @@ pipeline {
         }
         stage('check_code') {
             steps {
-                sh 'chmod 777 tests/check_code_bandit.py && python3.8 -m bandit -r rss_app -q | tests/check_code_bandit.py'
+                sh 'chmod 777 tests/check_code_bandit.py'
+                sh 'python3.8 -m bandit -r rss_app -q | tests/check_code_bandit.py'
             }
         }
         stage('check_health') {
