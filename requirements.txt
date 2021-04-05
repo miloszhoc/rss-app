@@ -39,7 +39,6 @@ pbr==5.5.1
 pg8000==1.18.0
 pip-autoremove==0.9.1
 pluggy==0.13.1
-psycopg2==2.8.6
 psycopg2-binary==2.8.6
 py==1.10.0
 pycparser==2.20
