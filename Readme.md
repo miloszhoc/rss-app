@@ -46,13 +46,13 @@ Application contains:
 
 ## CI/CD ##
 
-This project uses Jenkins as CI/CD tool. The pipeline was built in YAML file and consists of following steps:
+This project uses Jenkins as CI/CD tool. The pipeline was built in Jenkinsfile and consists of following steps:
 
 Step 1. Checking code for vulnerabilities with Bandit library  
 Step 2. Unit tests  
-Step 3. Integration tests  
-Step 4. Selenium E2E tests
-Step 5. Deploying app to production  
+Step 3. Code components integration tests  
+Step 4. Deployment
+Step 5. Selenium E2E tests
 
 ---------
 
