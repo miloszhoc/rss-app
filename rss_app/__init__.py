@@ -1,7 +1,8 @@
 from rss_app.application import bp
+from rss_app.config import CONFIG
 
 
-def create_app(config_name=None, **kwargs):
+def create_app(config_name=CONFIG, **kwargs):
     from flask import Flask, jsonify
     from flask_cors import CORS
     from flask_migrate import Migrate

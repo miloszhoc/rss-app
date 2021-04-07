@@ -2,3 +2,5 @@
 venv
 .idea
 rss_app/dev-app.db
+__pycache__
+dev-app.db.back

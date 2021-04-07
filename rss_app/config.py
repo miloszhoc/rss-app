@@ -1,5 +1,7 @@
 import os
 
+CONFIG = os.environ.get('CONFIG')  # allowed: dev, test, prod
+
 # database access
 DB_HOST = os.environ.get('DB_HOST')
 DB_USER = os.environ.get('DB_USER')

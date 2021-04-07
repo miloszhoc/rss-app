@@ -1,5 +1,10 @@
+import configparser
+
 from requests import Session
 from selenium import webdriver
+
+config = configparser.ConfigParser()
+config.read('tests/e2e_tests/test_config.ini')
 
 
 class CreateDriver():
@@ -44,7 +49,7 @@ class CreateDriver():
             if env == 'local':
                 self._driver = webdriver.Chrome(executable_path=driver_path, desired_capabilities=self.CHROME, **kwargs)
             elif env == 'remote':
-                self._driver = webdriver.Remote(command_executor='http://192.168.1.18:4444/wd/hub',
+                self._driver = webdriver.Remote(command_executor=config['TEST_ENV']['SELENIUM_HUB_URL'],
                                                 desired_capabilities=self.CHROME)
         self._driver.set_page_load_timeout(60)
 
