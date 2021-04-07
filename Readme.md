@@ -55,10 +55,11 @@ Step 3. Code components integration tests
 Step 4. Application Deployment    
 Step 5. Selenium E2E tests
 
-
 For deploying app Jenkins uses 'Publish Over SSH' plugin. It connects to remote server via SSH, copies all files from
 repository to target machine and invokes ``docker-compose build`` and ``docker-compose up -d `` commands. Before running
 deployment it is required to add account to docker group with `` sudo usermod -aG docker username `` command.
+
+Configuration file for e2e tests is [here](./tests/e2e_tests/test_config.ini).
 
 ---------
 
