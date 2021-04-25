@@ -61,6 +61,8 @@ deployment it is required to add account to docker group with `` sudo usermod -a
 
 Configuration file for e2e tests is [here](./tests/e2e_tests/test_config.ini).
 
+All tests results are present in 'Test Result' section in build details.
+
 ---------
 
 ## External services ##
