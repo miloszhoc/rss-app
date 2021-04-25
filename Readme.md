@@ -44,6 +44,8 @@ Application contains:
 - e2e tests
 - [test cases for manual testing](tests/test_cases.md)
 
+E2E tests throws pytest-html report with screenshots on fail for easier tests debugging.
+
 ## CI/CD ##
 
 This project uses Jenkins as CI/CD tool. The pipeline was built in [Jenkinsfile](./Jenkinsfile) and consists of
