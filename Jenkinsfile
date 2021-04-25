@@ -42,13 +42,14 @@ pipeline {
         stage('e2e_tests') {
             steps {
                 script {
-                    sh 'python3.8 -m pytest tests/e2e_tests --junitxml=e2e_result.xml'
+                    sh 'python3.8 -m pytest tests/e2e_tests --html=report_e2e.html --self-contained-html --junitxml=e2e_result.xml'
                     junit 'e2e_result.xml'
                 }
             }
         }
     }
     post {
+        always { archiveArtifacts 'report_e2e.html'}
         cleanup { cleanWs() }
     }
 }
