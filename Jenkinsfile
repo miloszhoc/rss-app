@@ -19,12 +19,18 @@ pipeline {
         }
         stage('unit_tests') {
             steps {
-                sh 'python3.8 -m pytest tests/unit_tests'
+                script {
+                    sh 'python3.8 -m pytest tests/unit_tests  --junitxml=unit_result.xml'
+                    junit 'unit_result.xml'
+                }
             }
         }
         stage('integration_tests') {
             steps {
-                sh 'python3.8 -m pytest tests/integration_tests'
+                script {
+                    sh 'python3.8 -m pytest tests/integration_tests --junitxml=integration_result.xml'
+                    junit 'integration_result.xml'
+                }
             }
         }
         stage('deployment'){
@@ -35,8 +41,14 @@ pipeline {
 
         stage('e2e_tests') {
             steps {
-                sh 'python3.8 -m pytest tests/e2e_tests'
+                script {
+                    sh 'python3.8 -m pytest tests/e2e_tests --junitxml=e2e_result.xml'
+                    junit 'e2e_result.xml'
+                }
             }
         }
+    }
+    post {
+        cleanup { cleanWs() }
     }
 }
